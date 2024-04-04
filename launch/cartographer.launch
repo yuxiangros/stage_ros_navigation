@@ -1,0 +1,12 @@
+<launch>
+
+  <node pkg="tf" type="static_transform_publisher" name="odom_to_map" args="0 0 0 0 0 0  /map /odom 100" />
+
+  <param name="use_sim_time" value="true" />
+
+  <node name="stage" pkg="stage_ros" type="stageros" args="$(find navigation)/world/robot.world" ns="/" output="log">
+      <remap from="base_scan" to="scan"/>
+      <!--remap from="base_laser_link" to="laser_link"/-->
+  </node>
+
+</launch>
